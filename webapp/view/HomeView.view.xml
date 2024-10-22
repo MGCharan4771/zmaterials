@@ -1,0 +1,108 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:filterbar="sap.ui.comp.filterbar" controllerName="zmaterial.controller.HomeView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:f="sap.f">
+    <f:DynamicPage>
+        <f:title>
+            <f:DynamicPageTitle >
+                <f:heading>
+                    <Title text="Materials"></Title>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader >
+                <f:content>
+                    <filterbar:FilterBar search="onPressGo">
+                        <filterbar:filterGroupItems>
+                            <filterbar:FilterGroupItem name="Material Number" label="Material Number" groupName="Group1" visibleInFilterBar="true" >
+                                <filterbar:control>
+                                    <Input id="idMaterialNumber" showValueHelp="true" valueHelpRequest="onMaterialNumberVH" showClearIcon="true" ></Input>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <filterbar:FilterGroupItem name="Material Description" label="Material Description" groupName="Group1" visibleInFilterBar="true" >
+                                <filterbar:control>
+                                    <Input id="idMaterialDescription" showValueHelp="true" valueHelpRequest="onMaterialDescVH" showClearIcon="true" ></Input>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <filterbar:FilterGroupItem name="Material Group" label="Material Group" groupName="Group1" visibleInFilterBar="true" >
+                                <filterbar:control>
+                                    <ComboBox id="idMaterialGroup" items="{/Material_DetSet}" showSecondaryValues="true" filterSecondaryValues="true" showClearIcon="true" >
+                                        <core:ListItem key="{Mat_Group}" text="{Mat_Group}" additionalText="{Mat_Des}"></core:ListItem>
+                                    </ComboBox>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <filterbar:FilterGroupItem name="Material Type" label="Material Type" groupName="Group1" visibleInFilterBar="true" >
+                                <filterbar:control>
+                                    <MultiComboBox id="idMaterialType" items="{/Material_DetSet}" showSelectAll="true" showClearIcon="true">
+                                        <core:Item key="{Mat_Type}" text="{Mat_Type}"></core:Item>
+                                    </MultiComboBox>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                        </filterbar:filterGroupItems>
+                    </filterbar:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table id="idTable" items="{TableModel>/results}" mode="SingleSelectLeft" selectionChange="onSelectChangeTable" 
+            alternateRowColors="true" sticky="HeaderToolbar,ColumnHeaders"> 
+                <headerToolbar>
+                    <OverflowToolbar >
+                        <Title text="Material Details"></Title>
+                        <ToolbarSpacer ></ToolbarSpacer>
+                        <Button text="Download" type="Emphasized" icon="sap-icon://download" press="onPressExport"></Button>
+                        <Button text="Create" type="Emphasized" icon="sap-icon://add-activity" press="onPressCreate" ></Button>
+                        <Button id="idUpdate" text="Update" type="Emphasized" icon="sap-icon://synchronize" enabled="{CommonModel>/UpdateEnabled}" press="onPressUpdate"></Button>
+                        <Button text="Delete" type="Reject" icon="sap-icon://delete" enabled="{CommonModel>/DeleteEnabled}" press="onPressDelete"></Button>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column >
+                        <Text text="Material Number"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Material Description"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Material Group"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Material Type"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Industry"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Product Hierarchy"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Net Weight"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Created Date"></Text>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onPressRow" >
+                        <cells>
+                            <!-- Property Binding -->
+                            <Link text="{TableModel>Mat_No}"/>
+                            <Text text="{path:'TableModel>Mat_Des', formatter: '.f.formatDesc'}" />
+                            <Text text="{TableModel>Mat_Group}"/>
+                            <Text text="{TableModel>Mat_Type}"/>
+                            <ObjectStatus text="{TableModel>Industry}" 
+                                        icon="{path: 'TableModel>Industry', formatter: '.f.formatIndustryIcon'}"
+                                        state="{path: 'TableModel>Industry', formatter: '.f.formatIndustryState'}"/>
+                            <ObjectStatus text="{path:'TableModel>Prod_Hiearchy', formatter: '.f.formatHierarchy'}"
+                                        state="{path: 'TableModel>Prod_Hiearchy', formatter: '.f.HierarStateChange'}"></ObjectStatus>
+                            <!-- <Text text="{TableModel>Net_weight}"></Text> -->
+                            <ObjectStatus text="{path:'TableModel>Net_weight', formatter: '.f.FormatNetWeight'}" 
+                                        state="{path: 'TableModel>Net_weight', formatter:'.f.netWeightStateChange'}"></ObjectStatus>
+                            <ObjectStatus text="{path:'TableModel>Created_On', formatter: '.f.formatDate'}"></ObjectStatus>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

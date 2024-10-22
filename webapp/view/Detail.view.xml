@@ -1,0 +1,66 @@
+<mvc:View xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="zmaterial.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page title="Detail Page" showNavButton="true" navButtonPress="onPressNavBack" >
+        <content>
+            <form:SimpleForm editable="true" title="Material Details" layout="ColumnLayout" emptySpanL="2" emptySpanXL="2" emptySpanM="2" columnsM="2" columnsL="2" columnsXL="2" >
+                <form:content>
+                    <Label text="Material Number" design="Bold"></Label>
+                    <Text text="{DetailModel>/Mat_No}" />
+                    <Label text="Description" design="Bold"></Label>
+                    <Input value="{DetailModel>/Mat_Des}" editable="false"></Input>
+                    <Label text="Industry" design="Bold"></Label>
+                    <Input value="{DetailModel>/Industry}" enabled="false"></Input> 
+                    <Label text="Material Group" design="Bold"></Label>
+                    <Input value="{DetailModel>/Mat_Group}" showClearIcon="true"></Input>
+                    <Label text="Material Type" design="Bold"></Label>
+                    <Input value="{DetailModel>/Mat_Type}" maxLength="4"></Input>
+                    <Label text="Base Unit" design="Bold"></Label>
+                    <Input value="{DetailModel>/Base_Unit}"></Input>
+                    <Label text="Volume" design="Bold"></Label>
+                    <Input value="{DetailModel>/Volum}"></Input>
+                    <Label text="Product Hierarchy" design="Bold"></Label>
+                    <Input value="{DetailModel>/Prod_Hiearchy}"></Input>
+                </form:content>
+            </form:SimpleForm>
+            <Table headerText="Line Item Details" items="{DetailModel>/mattransportdetnav/results}" inset="true">
+                <columns>
+                    <Column>
+                        <Text text="Material Number"></Text>
+                    </Column>
+                    <Column>
+                        <Text text="Manufacture Number"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Net Content"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Packaging Material"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Storage Condition"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Transportation Group"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Supplier Source"></Text>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <Input value="{DetailModel>Mat_No}" ></Input>
+                            <Input value="{DetailModel>Mfg_No}"></Input>
+                            <Input value="{DetailModel>Net_Content}"></Input>
+                            <Input value="{DetailModel>Packag_Mat}"></Input>
+                            <Input value="{DetailModel>Strg_Condition}" ></Input>
+                            <Input value="{DetailModel>Trans_Group}" ></Input>
+                            <Input value="{DetailModel>Supply_Source}" ></Input>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

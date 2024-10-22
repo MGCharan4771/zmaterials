@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Dialog title="Material Number Value Help" contentWidth="50%">
+        <Table items="{/Material_DetSet}" >
+            <columns>
+                <Column >
+                    <Text text="Material Number"></Text>
+                </Column>
+                <Column >
+                    <Text text="Material Description"></Text>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem type="Active" press="onPressMaterialNumberRow" >
+                    <cells>
+                        <Text text="{Mat_No}"/>
+                        <Text text="{Mat_Des}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <endButton>
+            <Button text="Close" press="onPressCloseMaterialNumber"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.ui.layout.form">
+    <Dialog title="Update Record" contentWidth="70%">
+        <VBox class="sapUiSmallMargin">
+		<f:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="true"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label text="Material Number" design="Bold" />
+				<Input id="idUpdateMatNo" value="{CommonModel>/Mat_Number}" editable="false" />
+				<Label text="Material Description" design="Bold" />
+				<Input id="idUpdateMatDesc" maxLength="20" value="{CommonModel>/Mat_Desc}" />
+				<Label text="Material Group" design="Bold" />
+				<Input id="idUpdateMatGroup" maxLength="4" value="{CommonModel>/Mat_Group}"/>
+				<Label text="Material Type" design="Bold"/>
+				<Input id="idUpdateMatType" maxLength="4" value="{CommonModel>/Mat_Type}" change="onChangeUpdateMatType" />
+                <Label text="Industry" design="Bold" />
+				<Input id="idUpdateMatIndustry" maxLength="1" value="{CommonModel>/Mat_Industry}" change="onChangeUpdateMatType"/>
+                <Label text="Product Hierarchy"  design="Bold"/>
+				<Input id="idUpdateMatHier" value="{CommonModel>/Mat_Hier}"/>
+				<Label text="Net Weight" design="Bold" />
+				<Input id="idUpdateNetWeight" value="{CommonModel>/Mat_NetWeight}" change="onChangeUpdateNetWeight"/>
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+    <buttons>
+        <Button text="Update" press="onPressUpdateUpdate"></Button>
+        <Button text="Close" press="onPressUpdateClose"></Button>
+    </buttons>
+    </Dialog>
+</core:FragmentDefinition>

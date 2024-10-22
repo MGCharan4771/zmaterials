@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZMATERIAL_DATA_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Material_Det" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mat_No"/>
+                </Key>
+                <Property Name="Created_On" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Created On"/>
+                <Property Name="Net_weight" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Net Weight"/>
+                <Property Name="Mat_No" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material"/>
+                <Property Name="Mat_Des" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description"/>
+                <Property Name="Industry" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Industry"/>
+                <Property Name="Mat_Group" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="Material Group"/>
+                <Property Name="Mat_Type" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Material Type"/>
+                <Property Name="Base_Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="Volum" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Volume"/>
+                <Property Name="Unit_of_Weight" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Unit of Weight" sap:semantics="unit-of-measure"/>
+                <Property Name="Volume_unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Volume Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="Cust_No" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Competitor"/>
+                <Property Name="Prod_Hiearchy" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Prod. Hierarchy"/>
+                <Property Name="Mat_Cat" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Matl Category"/>
+                <NavigationProperty Name="mattransportdetnav" Relationship="ZMATERIAL_DATA_SRV.assmatdettomattransdet" FromRole="FromRole_assmatdettomattransdet" ToRole="ToRole_assmatdettomattransdet"/>
+            </EntityType>
+            <EntityType Name="Mat_Transport_Det" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mat_No"/>
+                </Key>
+                <Property Name="Mat_No" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Strg_Condition" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Stor.conditions" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Trans_Group" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Trans. Group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Supply_Source" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Supply source" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Packag_Mat" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Packag.mat.type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Net_Content" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Net Contents" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mfg_No" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Manufacturer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Profile" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="FileName"/>
+                </Key>
+                <Property Name="FileName" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FileType" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Content" Type="Edm.Binary" Nullable="false" sap:unicode="false" sap:label="Binary String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="zfile" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Filename"/>
+                </Key>
+                <Property Name="Filename" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.Binary" Nullable="false" sap:unicode="false" sap:label="Binary String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mimetype" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Material_No" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MatNo"/>
+                </Key>
+                <Property Name="MatDes" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material Description" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MatNo" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material No" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="Material_Type" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MatType"/>
+                </Key>
+                <Property Name="MatTypDes" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material Type Description" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MatType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Material Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="Material_Group" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MatGrp"/>
+                </Key>
+                <Property Name="MatGrpDes" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material Group Description" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MatGrp" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <Association Name="assmatdettomattransdet" sap:content-version="1">
+                <End Type="ZMATERIAL_DATA_SRV.Material_Det" Multiplicity="1" Role="FromRole_assmatdettomattransdet"/>
+                <End Type="ZMATERIAL_DATA_SRV.Mat_Transport_Det" Multiplicity="*" Role="ToRole_assmatdettomattransdet"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assmatdettomattransdet">
+                        <PropertyRef Name="Mat_No"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assmatdettomattransdet">
+                        <PropertyRef Name="Mat_No"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZMATERIAL_DATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Material_DetSet" EntityType="ZMATERIAL_DATA_SRV.Material_Det" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Mat_Transport_DetSet" EntityType="ZMATERIAL_DATA_SRV.Mat_Transport_Det" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ProfileSet" EntityType="ZMATERIAL_DATA_SRV.Profile" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zfileSet" EntityType="ZMATERIAL_DATA_SRV.zfile" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Material_NoSet" EntityType="ZMATERIAL_DATA_SRV.Material_No" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Material_TypeSet" EntityType="ZMATERIAL_DATA_SRV.Material_Type" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Material_GroupSet" EntityType="ZMATERIAL_DATA_SRV.Material_Group" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="assmatdettomattransdetSet" Association="ZMATERIAL_DATA_SRV.assmatdettomattransdet" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Material_DetSet" Role="FromRole_assmatdettomattransdet"/>
+                    <End EntitySet="Mat_Transport_DetSet" Role="ToRole_assmatdettomattransdet"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="http://s4hana.st.com:8088/sap/opu/odata/sap/ZMATERIAL_DATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://s4hana.st.com:8088/sap/opu/odata/sap/ZMATERIAL_DATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
